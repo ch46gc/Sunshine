@@ -11,7 +11,8 @@
 
         <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
         <string name="app_name">Sunshine</string>
-
+    <!--Title for the Refresh button -->
+        <string name="action_refresh">Refresh</string>
         <!-- - - - - - - - - - - - - -->
         <!--Used by SunshineDateUtils-->
         <!-- - - - - - - - - - - - - -->
