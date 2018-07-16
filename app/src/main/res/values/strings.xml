@@ -13,6 +13,8 @@
         <string name="app_name">Sunshine</string>
     <!--Title for the Refresh button -->
         <string name="action_refresh">Refresh</string>
+<!--Error message-->
+    <string name="error_message">Error while loading. Please try again by clicking REFRESH.</string>
         <!-- - - - - - - - - - - - - -->
         <!--Used by SunshineDateUtils-->
         <!-- - - - - - - - - - - - - -->
