@@ -6,7 +6,7 @@ import android.util.Log;
 import com.example.android.sunshine.R;
 import com.example.android.sunshine.data.SunshinePreferences;
 
-public class SunshineWeatherUtils {
+public final class SunshineWeatherUtils {
     private static final String LOG_TAG = SunshineWeatherUtils.class.getSimpleName();
 
     /**
@@ -374,5 +374,4 @@ public class SunshineWeatherUtils {
         Log.e(LOG_TAG, "Unknown Weather: " + weatherId);
         return R.drawable.art_storm;
     }
-
 }

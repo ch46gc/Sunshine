@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 
-public class OpenWeatherJsonUtils {
+public final class OpenWeatherJsonUtils {
     /**
      * This method parses JSON from a web response and returns an array of Strings
      * describing the weather over various days from the forecast.
@@ -129,5 +129,4 @@ public class OpenWeatherJsonUtils {
         /** This will be implemented in a future lesson **/
         return null;
     }
-
 }

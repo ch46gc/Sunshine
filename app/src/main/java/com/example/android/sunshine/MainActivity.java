@@ -18,45 +18,63 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mWeatherTextView;
-    //TextView variable for the error message display
-   private TextView mErrorMessageDisplay;
-    // ProgressBar variable to show and hide the progress bar
+
+    // COMPLETED (6) Add a TextView variable for the error message display
+    private TextView mErrorMessageDisplay;
+    // COMPLETED(16) Add a ProgressBar variable to show and hide the progress bar
     private ProgressBar mLoadingIndicator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forecast);
-        mWeatherTextView =  findViewById(R.id.tv_weather_data);
-        //Find the TextView for the error message using findViewById
-        mErrorMessageDisplay =  findViewById(R.id.error_message_display);
-        // Find the ProgressBar using findViewByIdmLoadingIndicator
+
+        /*
+         * Using findViewById, we get a reference to our TextView from xml. This allows us to
+         * do things like set the text of the TextView.
+         */
+        mWeatherTextView = (TextView) findViewById(R.id.tv_weather_data);
+
+        // COMPLETED (7) Find the TextView for the error message using findViewById
+        mErrorMessageDisplay = (TextView) findViewById(R.id.error_message_display);
+        // COMPLETED (17) Find the ProgressBar using findViewById
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
         /* Once all of our views are setup, we can load the weather data. */
         loadWeatherData();
     }
+
+    /**
+     * This method will get the user's preferred location for weather, and then tell some
+     * background method to get the weather data in the background.
+     */
     private void loadWeatherData() {
-        // Call showWeatherDataView before executing the AsyncTask
+        // COMPLETED (20) Call showWeatherDataView before executing the AsyncTask
         showWeatherDataView();
         String location = SunshinePreferences.getPreferredWeatherLocation(this);
         new FetchWeatherTask().execute(location);
     }
-    //Will hide the error message and show the weather data
-private void showWeatherDataView(){
+
+    //COMPLETED (8) Create a method called showWeatherDataView that will hide the error message and show the weather data
+    private void showWeatherDataView(){
         mErrorMessageDisplay.setVisibility(View.INVISIBLE);
         mWeatherTextView.setVisibility(View.VISIBLE);
-}
-    // Will hide the weather data and show the error message
+
+    }
+    // COMPLETED (9) Create a method called showErrorMessage that will hide the weather data and show the error message
     private void showErrorMessage (){
         mWeatherTextView.setVisibility(View.INVISIBLE);
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
 
     }
     public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
+
+        // COMPLETED (18) Within your AsyncTask, override the method onPreExecute and show the loading indicator
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             mLoadingIndicator.setVisibility(View.VISIBLE);
         }
+
         @Override
         protected String[] doInBackground(String... params) {
 
@@ -85,8 +103,10 @@ private void showWeatherDataView(){
 
         @Override
         protected void onPostExecute(String[] weatherData) {
+            // COMPLETED (19) As soon as the data is finished loading, hide the loading indicator
             mLoadingIndicator.setVisibility(View.INVISIBLE);
             if (weatherData != null) {
+                // COMPLETED (11) If the weather data was not null, make sure the data view is visible
                 showWeatherDataView();
                 /*
                  * Iterate through the array and append the Strings to the TextView. The reason why we add
@@ -96,6 +116,8 @@ private void showWeatherDataView(){
                 for (String weatherString : weatherData) {
                     mWeatherTextView.append((weatherString) + "\n\n\n");
                 }
+
+                //COMPLETED (10) If the weather data was null, show the error message
             } else {
                 showErrorMessage();
             }
@@ -113,15 +135,15 @@ private void showWeatherDataView(){
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id==R.id.action_refresh){
+
+        if (id == R.id.action_refresh) {
             mWeatherTextView.setText("");
             loadWeatherData();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }
-
-

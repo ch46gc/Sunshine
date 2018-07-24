@@ -8,7 +8,8 @@ import com.example.android.sunshine.R;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
-public class SunshineDateUtils {
+public final class SunshineDateUtils {
+
     public static final long SECOND_IN_MILLIS = 1000;
     public static final long MINUTE_IN_MILLIS = SECOND_IN_MILLIS * 60;
     public static final long HOUR_IN_MILLIS = MINUTE_IN_MILLIS * 60;
@@ -175,5 +176,4 @@ public class SunshineDateUtils {
             return dayFormat.format(dateInMillis);
         }
     }
-
 }
