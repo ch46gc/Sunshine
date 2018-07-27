@@ -9,13 +9,13 @@ import android.widget.TextView;
 
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder> {
 
-    private String[] mWeatherData;
+    private static String[] mWeatherData;
 
     /*
      * An on-click handler that we've defined to make it easy for an Activity to interface with
      * our RecyclerView
      */
-    private final ForecastAdapterOnClickHandler mClickHandler;
+    private  final ForecastAdapterOnClickHandler mClickHandler;
 
     /**
      * The interface that receives onClick messages.
@@ -42,7 +42,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
         public ForecastAdapterViewHolder(View view) {
             super(view);
-            mWeatherTextView = (TextView) view.findViewById(R.id.tv_weather_data);
+            mWeatherTextView =  view.findViewById(R.id.tv_weather_data);
             view.setOnClickListener(this);
         }
 
